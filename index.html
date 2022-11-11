@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edmund Nillas III</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="./index.js" defer></script>
+    <script src="index.js" defer></script>
   </head>
   <body>
     <header>
@@ -18,23 +18,42 @@
       </nav>
     </header>
     <main>
-      <section>
-        <h3 id="about" class="anchor">About</h3>
+      <section class="anchor" id="about">
+        <h3 class="header">About</h3>
         <p>
           I'm an programming enthusiast. I spend my time studying and making
           robust applications
         </p>
       </section>
-      <section>
-        <h3 id="projects" class="anchor">Projects</h3>
+      <section class="anchor" id="projects">
+        <h3 class="header">Projects</h3>
         <div class="projects-container">
-          <div class="card-item">
-            <img src="./public/images/neovim2.png" alt="project-img" />
-            <div class="description-container">
-              <h3>Project Name here</h3>
-              <p>Project description here</p>
+          <a href="#">
+            <div class="card-item">
+              <div>
+                <img src="public/images/neovim2.png" alt="project-img" />
+              </div>
+              <div class="description-container">
+                <h3>Simulacra</h3>
+                <p>
+                  An rendering engine developed in C++ for game development,
+                  visualizing data, and algorithms
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
+          <a href="#">
+            <div class="card-item">
+              <img src="public/images/neovim2.png" alt="project-img" />
+              <div class="description-container">
+                <h3>Project Name here</h3>
+                <p>
+                  Project description here, maybe I'll add another one when I'm
+                  good at a certain thing
+                </p>
+              </div>
+            </div>
+          </a>
         </div>
       </section>
     </main>
