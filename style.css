@@ -53,7 +53,7 @@ section {
 img {
   width: 8rem;
   height: 8rem;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .header {
@@ -65,8 +65,8 @@ img {
 }
 
 .anchor {
-  margin-top: -70px;
-  padding-top: 70px;
+  margin-top: -90px;
+  padding-top: 90px;
 }
 
 .title-container:hover > a {
@@ -76,20 +76,64 @@ img {
 .nav-container {
   display: flex;
   justify-content: center;
+  padding: 12px 0;
 }
 
 .links-container {
   display: flex;
   align-items: center;
-  padding: 12px;
   gap: 36px;
   width: 75vw;
 }
 
-.project-type-container {
+.headerinfo-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.tools-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-auto-rows: minmax(100px, auto);
+  border: 1px solid var(--fg);
+  border-radius: 10px;
+  padding: 0.9rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.web-icons-container {
+  width: 4rem;
+  height: 4rem;
+  font-size: 3rem;
+  border: 1px solid var(--fg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.web-icons-container > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  z-index: -5;
+}
+
+.invert-color {
+  filter: invert(1);
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech-item > h3 {
+  font-size: smaller;
 }
 
 .projects-container {
@@ -106,7 +150,7 @@ img {
   background-color: transparent;
   color: var(--fg);
   border: 1px solid var(--fg);
-  width: max(45vw, 300px);
+  width: 45vw;
   padding: 0.9rem 1.2rem;
   border-radius: 8px;
   transition: 0.2s ease-in-out;
@@ -147,6 +191,7 @@ img {
     object-fit: cover;
   }
 }
+/*External Background and Icons*/
 
 @keyframes animate {
   0% {
