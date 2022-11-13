@@ -151,7 +151,6 @@ section {
   padding: 0.9rem 1.2rem;
   border-radius: 8px;
   transition: 0.2s ease-in-out;
-  animation: slideUp 1s;
 }
 
 .card-item > img {
@@ -173,17 +172,6 @@ section {
   height: 100px;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0%;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 100%;
-    transform: translateY(0%);
-  }
-}
-
 @media screen and (orientation: portrait) {
   .card-item {
     flex-direction: column;
@@ -199,6 +187,7 @@ section {
     object-fit: cover;
   }
 }
+
 /*External Background and Icons*/
 
 @keyframes animate {
@@ -244,6 +233,7 @@ section {
   bottom: -110px;
   animation-delay: 1s;
 }
+
 .background li:nth-child(1) {
   left: 17%;
   width: 134px;
@@ -251,6 +241,7 @@ section {
   bottom: -134px;
   animation-delay: 1s;
 }
+
 .background li:nth-child(2) {
   left: 66%;
   width: 119px;
@@ -258,6 +249,7 @@ section {
   bottom: -119px;
   animation-delay: 5s;
 }
+
 .background li:nth-child(3) {
   left: 85%;
   width: 214px;
@@ -265,6 +257,7 @@ section {
   bottom: -214px;
   animation-delay: 15s;
 }
+
 .background li:nth-child(4) {
   left: 15%;
   width: 159px;
@@ -272,6 +265,7 @@ section {
   bottom: -159px;
   animation-delay: 4s;
 }
+
 .background li:nth-child(5) {
   left: 24%;
   width: 213px;
@@ -279,6 +273,7 @@ section {
   bottom: -213px;
   animation-delay: 6s;
 }
+
 .background li:nth-child(6) {
   left: 66%;
   width: 189px;
