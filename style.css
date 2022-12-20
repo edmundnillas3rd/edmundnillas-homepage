@@ -21,6 +21,7 @@ body {
   background-color: var(--bg);
   color: var(--fg);
   letter-spacing: 0.05rem;
+  line-height: 1.9rem;
 }
 
 header {
@@ -55,6 +56,10 @@ section {
   flex-direction: column;
   gap: 0.3rem;
   width: min(95vw, calc(64rem - 300px));
+}
+
+hr {
+  width: 90%;
 }
 
 .header-anchor {
@@ -186,6 +191,13 @@ section {
 
 .project-link:hover {
   background-color: var(--bg);
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 @media screen and (orientation: portrait) {
