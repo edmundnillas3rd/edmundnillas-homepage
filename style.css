@@ -44,6 +44,11 @@ a:hover {
   color: var(--hl);
 }
 
+html {
+  height: 100%;
+  margin: auto;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -166,6 +171,12 @@ img {
   font-weight: 600;
 }
 
+#projects {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -192,6 +203,13 @@ img {
   border-radius: 8px;
 }
 
+.main-projects-container,
+.side-projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .project-img-container {
   width: 100px;
   height: 100px;
@@ -206,7 +224,7 @@ img {
 .project-link {
   background-color: var(--hl);
   color: var(--bg);
-  padding: 5px 8px;
+  padding: 2px 8px;
   border-radius: 4px;
   border: 1px solid var(--hl);
   font-weight: bold;
@@ -224,7 +242,29 @@ img {
   gap: 1.5rem;
 }
 
+#contacts {
+  align-items: center;
+  margin-top: 10px;
+}
+
+.contact-information-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-radius: 10px;
+  background-color: var(--sh);
+  padding: 1.5rem;
+}
+
+.img-container {
+  width: 2vw;
+}
+
 @media screen and (orientation: portrait) {
+  .img-container {
+    width: 4vw;
+  }
+
   .project-links-container {
     width: 25vw;
   }
