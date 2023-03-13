@@ -199,16 +199,14 @@ img {
 
 .project-links-container {
   display: flex;
-  justify-content: space-around;
-  width: 25vw;
-  padding: 0 0.5rem;
-  gap: 1.2rem;
+  justify-content: center;
+  width: 15vw;
 }
 
 .project-link {
   background-color: var(--hl);
   color: var(--bg);
-  padding: 0.4rem;
+  padding: 5px 8px;
   border-radius: 4px;
   border: 1px solid var(--hl);
   font-weight: bold;
@@ -227,8 +225,11 @@ img {
 }
 
 @media screen and (orientation: portrait) {
-  .card-item,
   .project-links-container {
+    width: 25vw;
+  }
+
+  .card-item {
     flex-direction: column;
   }
 
