@@ -5,22 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edmund Nillas III</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
   </head>
   <body>
     <header>
       <nav class="nav-container">
         <div class="title-container"><a href="#">Edmund Nillas III</a></div>
-        <div class="links-container">
+        <div
+          class="links-container"
+          id="links-container"
+          aria-expanded="false"
+          aria-controls="links-container"
+        >
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
         </div>
 
-        <div class="nav-bar-container">
-          <img src="public/images/menu.png" alt="flaticon-burger" />
+        <div class="nav-bar-button-container">
+          <button id="burger-button">
+            <img src="public/images/menu.png" alt="flaticon-burger" />
+          </button>
         </div>
       </nav>
     </header>
     <main>
+      <div class="nav-bar-menu-container"></div>
       <section class="anchor" id="about">
         <h3 class="header-anchor">About</h3>
         <p>

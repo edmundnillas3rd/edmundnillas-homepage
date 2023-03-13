@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 :root {
   --fg: #f9fbff;
   --bg: #2e282d;
@@ -5,9 +7,13 @@
   --sh: #665d65;
 }
 
-@font-face {
-  font-family: "Roboto Mono";
-  src: url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 1px;
+  line-height: 30px;
+  box-sizing: border-box;
 }
 
 html {
@@ -15,9 +21,6 @@ html {
 }
 
 body {
-  font-family: "Robot Mono", monospace;
-  padding: 0;
-  margin: 0;
   background-color: var(--bg);
   color: var(--fg);
 }
@@ -52,8 +55,9 @@ main {
 section {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 1rem;
   width: min(95vw, calc(64rem - 300px));
+  font-size: calc(0.5rem + 0.7vw);
 }
 
 hr {
@@ -73,6 +77,7 @@ img {
   border-radius: 3px;
   padding: 3px 8px;
   width: fit-content;
+  font-weight: bolder;
 }
 
 .anchor {
@@ -89,18 +94,28 @@ img {
   align-items: center;
   justify-content: space-evenly;
   gap: 12px;
-  padding: 12px 10vw;
+  padding: 12px 2vw;
 }
 
-.nav-bar-container {
+.nav-bar-container,
+.nav-bar-button-container {
   display: none;
+}
+
+.nav-bar-button-container > button {
+  cursor: pointer;
+  background-color: transparent;
+  filter: invert(1);
+  border: none;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
 }
 
 .links-container {
   display: flex;
   align-items: center;
   gap: 36px;
-  width: 55vw;
 }
 
 .headerinfo-container {
@@ -218,21 +233,42 @@ img {
   }
 
   .nav-container {
-    justify-content: space-around;
-    padding: 12px 0;
+    justify-content: space-between;
+    padding: 12px 15px;
   }
 
-  .nav-bar-container {
+  .nav-bar-button-container {
+    all: unset;
     display: flex;
-
-    background-color: var(--hl);
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+    position: relative;
+    z-index: 1;
   }
 
   .links-container {
-    display: none;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: min(18rem, 100vw);
+    height: 100vh;
+
+    margin: 0;
+    padding: 2rem;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    border-left: 1px solid var(--sh);
+    visibility: visible;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .links-container {
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        visibility 0.3s linear;
+    }
+  }
+
+  [aria-expanded="false"] {
+    transform: translateX(100%);
+    visibility: hidden;
   }
 }
