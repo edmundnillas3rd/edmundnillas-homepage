@@ -226,7 +226,7 @@ img {
 .project-links-container {
   display: flex;
   justify-content: center;
-  width: 15vw;
+  gap: 2rem;
 }
 
 .project-link {
@@ -271,10 +271,6 @@ img {
 @media screen and (orientation: portrait) {
   .img-container {
     width: 4vw;
-  }
-
-  .project-links-container {
-    width: 25vw;
   }
 
   .card-item {
