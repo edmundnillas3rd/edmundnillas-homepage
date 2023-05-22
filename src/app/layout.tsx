@@ -1,5 +1,7 @@
 "use client";
+
 import { Providers } from "./providers";
+import Navbar from "../components/Navbar";
 
 export default function RootLayout({
   children,
@@ -9,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>This is the header section</header>
+        <Navbar/>
         <Providers>{children}</Providers>
       </body>
     </html>
