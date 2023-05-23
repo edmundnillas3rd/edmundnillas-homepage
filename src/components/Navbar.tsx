@@ -36,9 +36,6 @@ const Navbar = () => {
               <Link as={NextLink} href="/blogs">
                 Blogs
               </Link>
-              <Link as={NextLink} href="/about">
-                About
-              </Link>
             </Flex>
             <IconButton
               ref={btnRef}
@@ -57,8 +54,20 @@ const Navbar = () => {
       >
         <DrawerOverlay />
         <DrawerContent bg="brand.300" color="brand.100">
-            <DrawerCloseButton />
-            <DrawerHeader>Edmund Nillas III</DrawerHeader>
+          <DrawerCloseButton />
+          <DrawerBody p={10}>
+            <Flex gap={10} direction="column" align="center">
+              <Link as={NextLink} href="/">
+                Home
+              </Link>
+              <Link as={NextLink} href="/blogs">
+                Blogs
+              </Link>
+              <Link as={NextLink} href="/about">
+                About
+              </Link>
+            </Flex>
+          </DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
