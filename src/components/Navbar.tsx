@@ -20,7 +20,7 @@ import { useRef } from "react";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef();
+  const btnRef = useRef(null);
 
   return (
     <>
@@ -38,6 +38,7 @@ const Navbar = () => {
               </Link>
             </Flex>
             <IconButton
+              aria-label="menu"
               ref={btnRef}
               onClick={onOpen}
               display={{ base: "block", sm: "block", md: "none" }}
