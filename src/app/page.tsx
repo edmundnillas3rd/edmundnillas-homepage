@@ -19,6 +19,7 @@ import {
 } from "react-icons/di";
 import { SiExpress, SiFirebase } from "react-icons/si";
 import Section from "../components/Section";
+import ProjectCard from "../components/ProjectCard";
 
 const Page = () => (
   <>
@@ -33,16 +34,16 @@ const Page = () => (
         </Text>
       </Flex>
     </Container>
-    <Flex direction="column" gap={40}>
+    <Flex direction="column" gap={5}>
       <Section title="About">
         <Text color="brand.200">
           &emsp;At the onset of the pandemic, I have been honing my skills in
           web development, constantly building side projects, either for my
-          amusement or for a purpose. I am eager and enthusiastic to learn more
+          amusement or for a purpose. I'm eager and enthusiastic to learn more
           about tech related subjects.
         </Text>
       </Section>
-      <Section title="Skills">
+      <Section title="Technologies Used">
         <Flex>
           <List spacing={3}>
             <ListItem color="brand.200">
@@ -90,6 +91,19 @@ const Page = () => (
             </ListItem>
           </List>
         </Flex>
+      </Section>
+      <Section title="Projects">
+        <ProjectCard
+          src="/images/plaza.jpg"
+          title="Plaza"
+          demoUrl="https://plaza-g5bz.onrender.com/"
+          codeUrl="https://github.com/edmundnillas3rd/Plaza"
+        >
+          <Text color="brand.200">
+            An ecommerce website made with React.js, Express.js, MongoDB, and
+            Firebase.
+          </Text>
+        </ProjectCard>
       </Section>
     </Flex>
   </>
