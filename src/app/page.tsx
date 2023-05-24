@@ -21,7 +21,7 @@ import { SiExpress, SiFirebase } from "react-icons/si";
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
 
-const Page = () => (
+const App = () => (
   <>
     <Container h="100vh">
       <Flex direction="column" justify="center" align="center" h="100%">
@@ -105,8 +105,11 @@ const Page = () => (
           </Text>
         </ProjectCard>
       </Section>
+      <Section title="Blogs">
+       Coming Soon...
+      </Section>
     </Flex>
   </>
 );
 
-export default Page;
+export default App;
