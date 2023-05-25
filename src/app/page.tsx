@@ -105,9 +105,7 @@ const App = () => (
           </Text>
         </ProjectCard>
       </Section>
-      <Section title="Blogs">
-       Coming Soon...
-      </Section>
+      <Section title="Blogs">Coming Soon...</Section>
     </Flex>
   </>
 );

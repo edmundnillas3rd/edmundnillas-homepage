@@ -13,7 +13,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Box bg="brand.300" color="brand.100">
+          <Box
+            bg="brand.300"
+            color="brand.100"
+          >
             <Navbar />
             {children}
           </Box>
