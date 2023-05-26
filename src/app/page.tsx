@@ -18,8 +18,26 @@ import {
   DiMysql,
 } from "react-icons/di";
 import { SiExpress, SiFirebase } from "react-icons/si";
+import { motion } from "framer-motion";
+
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
+
+const list = { visible: { opacity: 1 } };
+const item = { hidden: { x: -100, opacity: 0 }, visible: { x: 0, opacity: 1 } };
+
+const SkillItem = ({ icon, color, children }) => (
+  <ListItem
+    as={motion.li}
+    variants={item}
+    initial="hidden"
+    whileInView="visible"
+    color="brand.200"
+  >
+    <ListIcon as={icon} color={color} />
+    {children}
+  </ListItem>
+);
 
 const App = () => (
   <>
@@ -45,50 +63,40 @@ const App = () => (
       </Section>
       <Section title="Technologies Used">
         <Flex>
-          <List spacing={3}>
-            <ListItem color="brand.200">
-              <ListIcon as={AiFillHtml5} color="orange.500" />
+          <List as={motion.ul} animate="visible" variants={list} spacing={3}>
+            <SkillItem icon={AiFillHtml5} color="orange.500">
               HTML
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={IoLogoCss3} color="blue.500" />
+            </SkillItem>
+            <SkillItem icon={IoLogoCss3} color="blue.500">
               CSS
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={DiJavascript} color="yellow.500" />
+            </SkillItem>
+            <SkillItem icon={DiJavascript} color="yellow.500">
               Javascript
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={DiReact} color="blue.500" />
+            </SkillItem>
+            <SkillItem icon={DiReact} color="blue.500">
               React.js
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={IoLogoNodejs} color="green.500" />
+            </SkillItem>
+            <SkillItem icon={IoLogoNodejs} color="green.500">
               Node.js
-            </ListItem>
+            </SkillItem>
           </List>
           <Spacer />
-          <List spacing={3}>
-            <ListItem color="brand.200">
-              <ListIcon as={SiExpress} color="white.500" />
+          <List as={motion.ul} animate="hidden" variants={list} spacing={3}>
+            <SkillItem icon={SiExpress} color="white.500">
               Express.js
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={DiMongodb} color="green.500" />
+            </SkillItem>
+            <SkillItem icon={DiMongodb} color="green.500">
               MongoDB
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={SiFirebase} color="yellow.300" />
+            </SkillItem>
+            <SkillItem icon={SiFirebase} color="yellow.300">
               Firebase
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={DiSass} color="pink.500" />
+            </SkillItem>
+            <SkillItem icon={DiSass} color="pink.500">
               Sass
-            </ListItem>
-            <ListItem color="brand.200">
-              <ListIcon as={DiMysql} color="blue.500" />
+            </SkillItem>
+            <SkillItem icon={DiMysql} color="blue.500">
               MySQL
-            </ListItem>
+            </SkillItem>
           </List>
         </Flex>
       </Section>
