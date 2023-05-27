@@ -3,3 +3,9 @@
 
 # Next.js
 /.next/
+
+# Env
+
+.env
+.env.development
+.env.production
