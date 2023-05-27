@@ -11,7 +11,16 @@ const colors = {
 const components = {
   Button: {
     defaultProps: {
-      colorScheme: "brand"
+      colorScheme: "brand",
+    },
+
+    variants: {
+      link: {
+        _hover: {
+          textDecoration: "none",
+          color: "brand.100"
+        }
+      }
     }
   },
 };
@@ -28,3 +37,6 @@ const theme = extendTheme({
 });
 
 export default theme;
+function defaultStyleConfig(arg0: {}) {
+  throw new Error("Function not implemented.");
+}

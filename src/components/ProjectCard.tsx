@@ -2,17 +2,20 @@ import { Button, Box, Flex, Spacer, Heading, Image } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
-const ProjectCard = ({ src, title, children, demoUrl, codeUrl }) => (
+const ProjectCard = ({ src = "", title, children, demoUrl = "", codeUrl }) => (
   <Flex gap={5}>
-    <Box>
-      <Image src={src} alt="project-img" />
-    </Box>
+    {src.length !== 0 && (
+      <Box>
+        <Image src={src} alt="project-img" />
+      </Box>
+    )}
     <Spacer />
     <Flex direction="column" gap={5}>
       <Heading size="md">{title}</Heading>
       {children}
       <Flex gap={5}>
         <Button
+          isDisabled={demoUrl.length === 0}
           as={NextLink}
           href={demoUrl}
           leftIcon={<ChevronRightIcon />}
