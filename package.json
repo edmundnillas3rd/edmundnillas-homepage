@@ -12,10 +12,13 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/source-code-pro": "^5.0.0",
+    "firebase": "^9.22.1",
+    "firebase-tools": "^12.2.1",
     "framer-motion": "^10.12.11",
     "next": "^13.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.1",
     "react-icons": "^4.8.0"
   },
   "devDependencies": {

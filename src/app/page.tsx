@@ -57,9 +57,9 @@ const App = () => {
           <Text color="brand.200">
             Hi I'm{" "}
             <Text as="span" color="brand.100">
-              Edmund
+              Edmund,
             </Text>{" "}
-            a full stack web developer
+            a full stack web developer.
           </Text>
         </Flex>
       </Container>
