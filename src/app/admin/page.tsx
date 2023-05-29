@@ -12,7 +12,8 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
-import { type Post, uploadPost } from "../../utils/storage";
+import { type Post, addPost } from "../../utils/database";
+import { uploadPost } from "../../utils/storage";
 
 const Admin = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -26,6 +27,10 @@ const Admin = () => {
     };
 
     uploadPost(post, files[0])
+      .then((result) => console.log(result))
+      .catch((reason) => console.error(reason));
+
+    addPost(post)
       .then((result) => console.log(result))
       .catch((reason) => console.error(reason));
   };

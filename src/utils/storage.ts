@@ -1,11 +1,7 @@
-import { storage } from "./firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-export interface Post {
-  author: string
-  path: string;
-  timestamp: Date;
-}
+import { storage } from "./firebaseConfig";
+import { type Post } from "./database";
 
 export async function uploadPost(post: Post, file: File) {
   const postRef = ref(
@@ -18,7 +14,10 @@ export async function uploadPost(post: Post, file: File) {
 }
 
 export async function getPost(post: Post) {
-  let postRef = ref(storage, `posts/${post.author}/${post.timestamp}/${post.path}`);
+  let postRef = ref(
+    storage,
+    `posts/${post.author}/${post.timestamp}/${post.path}`
+  );
   let downloadUrl = await getDownloadURL(postRef);
 
   return downloadUrl;
