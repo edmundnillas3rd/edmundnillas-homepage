@@ -12,14 +12,20 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
-import { uploadPost } from "../../utils/storage";
+import { type Post, uploadPost } from "../../utils/storage";
 
 const Admin = () => {
   const [files, setFiles] = useState<File[]>([]);
   const onFileSubmit = (e) => {
     e.preventDefault();
 
-    uploadPost(files[0].name, files[0])
+    const post: Post = {
+      author: "edmund",
+      path: files[0].name,
+      timestamp: new Date(),
+    };
+
+    uploadPost(post, files[0])
       .then((result) => console.log(result))
       .catch((reason) => console.error(reason));
   };

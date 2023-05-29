@@ -1,18 +1,30 @@
 import { storage } from "./firebaseConfig";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-export async function uploadPost(path: string, file: File) {
-  const postRef = await ref(storage, `posts/${path}`);
-  await uploadBytes(postRef, file);
+export interface Post {
+  author: string
+  path: string;
+  timestamp: Date;
 }
 
-export async function getPost(path: string) {
-  // TODO (Edmund): Get a single post from storage
-  let postRef = ref(storage, path);
+export async function uploadPost(post: Post, file: File) {
+  const postRef = ref(
+    storage,
+    `posts/${post.author}/${post.timestamp}/${post.path}`
+  );
+  const response = await uploadBytes(postRef, file);
+
+  return response;
 }
 
-export async function getPosts() {
-  // TODO (Edmund): Get at least 5 post from storage
+export async function getPost(post: Post) {
+  let postRef = ref(storage, `posts/${post.author}/${post.timestamp}/${post.path}`);
+  let downloadUrl = await getDownloadURL(postRef);
+
+  return downloadUrl;
+}
+
+export async function getPosts(urls: Post[]) {
   let posts = [];
   return posts;
 }
