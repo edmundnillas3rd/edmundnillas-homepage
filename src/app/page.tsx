@@ -19,9 +19,13 @@ import {
 } from "react-icons/di";
 import { SiExpress, SiFirebase } from "react-icons/si";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import NextLink from "next/link";
 
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
+import { getPosts } from "../utils/database";
+import { DocumentData } from "firebase/firestore";
 
 const SkillItem = ({ icon, color, children }) => {
   const item = {
@@ -44,6 +48,14 @@ const SkillItem = ({ icon, color, children }) => {
 };
 
 const App = () => {
+  const [posts, setPosts] = useState<DocumentData>();
+  useEffect(() => {
+    getPosts().then((data) => {
+      console.log(data);
+      setPosts(data);
+    });
+  }, []);
+
   const list = {
     visible: {
       opacity: 1,
@@ -141,7 +153,16 @@ const App = () => {
             </Text>
           </ProjectCard>
         </Section>
-        <Section title="Blogs">Coming Soon...</Section>
+        <Section title="Blogs">
+          <List spacing={3}>
+            {posts &&
+              posts.map((post) => (
+                <ListItem as={NextLink} href={`blogs/${post.title}`}>
+                  {post.title}
+                </ListItem>
+              ))}
+          </List>
+        </Section>
       </Flex>
     </>
   );

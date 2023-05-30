@@ -23,7 +23,7 @@ const Admin = () => {
     const post: Post = {
       author: "edmund",
       path: files[0].name,
-      timestamp: new Date(),
+      timestamp: new Date().toJSON(),
     };
 
     uploadPost(post, files[0])

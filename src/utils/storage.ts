@@ -13,7 +13,7 @@ export async function uploadPost(post: Post, file: File) {
   return response;
 }
 
-export async function getPost(post: Post) {
+export async function getURLPost(post: Post) {
   let postRef = ref(
     storage,
     `posts/${post.author}/${post.timestamp}/${post.path}`
@@ -23,7 +23,16 @@ export async function getPost(post: Post) {
   return downloadUrl;
 }
 
-export async function getPosts(urls: Post[]) {
-  let posts = [];
-  return posts;
+export async function getURLPosts(posts: Post[]) {
+  let urls: string[] = [];
+
+  posts.forEach(async (post) => {
+    urls.push(
+      await getDownloadURL(
+        ref(storage, `posts/${post.author}/${post.timestamp}/${post.path}`)
+      )
+    );
+  });
+
+  return urls;
 }
