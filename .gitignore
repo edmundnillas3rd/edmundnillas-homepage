@@ -8,3 +8,6 @@
 .env
 .env.development
 .env.production
+
+# Test
+/.test.mdfiles/
