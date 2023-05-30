@@ -17,8 +17,17 @@ import { uploadPost } from "../../utils/storage";
 
 const Admin = () => {
   const [files, setFiles] = useState<File[]>([]);
+
+  const isError = files[0]?.type !== "text/markdown";
+
+  const onFileChange = (e) => {
+    setFiles(Array.from(e.target.files) ?? []);
+  };
+
   const onFileSubmit = (e) => {
     e.preventDefault();
+
+    if (isError) return;
 
     const post: Post = {
       author: "edmund",
@@ -56,11 +65,12 @@ const Admin = () => {
         >
           <FormControl>
             <FormLabel>Add Blog Post</FormLabel>
-            <Input
-              type="file"
-              onChange={(e) => setFiles(Array.from(e.target.files) ?? [])}
-            />
-            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
+            <Input type="file" accept=".md" onChange={onFileChange} />
+            {!isError ? (
+              <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
+            ) : (
+              <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
+            )}
             <Input type="submit" />
           </FormControl>
         </form>

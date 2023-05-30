@@ -51,7 +51,6 @@ const App = () => {
   const [posts, setPosts] = useState<DocumentData>();
   useEffect(() => {
     getPosts().then((data) => {
-      console.log(data);
       setPosts(data);
     });
   }, []);
@@ -154,10 +153,18 @@ const App = () => {
           </ProjectCard>
         </Section>
         <Section title="Blogs">
-          <List spacing={3}>
+          <List
+            spacing={3}
+            display="flex"
+            flexDir="column"
+          >
             {posts &&
-              posts.map((post) => (
-                <ListItem as={NextLink} href={`blogs/${post.title}`}>
+              posts.map((post, index) => (
+                <ListItem
+                  as={NextLink}
+                  key={index}
+                  href={`blogs/${post.title}`}
+                >
                   {post.title}
                 </ListItem>
               ))}
