@@ -163,9 +163,9 @@ const App = () => {
                 <ListItem
                   as={NextLink}
                   key={index}
-                  href={`blogs/${post.title}`}
+                  href={`blogs/${post.id}`}
                 >
-                  {post.title}
+                  {post.data.title}
                 </ListItem>
               ))}
           </List>

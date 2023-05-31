@@ -17,6 +17,7 @@ import { uploadPost } from "../../utils/storage";
 
 const Admin = () => {
   const [files, setFiles] = useState<File[]>([]);
+  const [title, setTitle] = useState<string>("");
 
   const isError = files[0]?.type !== "text/markdown";
 
@@ -31,6 +32,7 @@ const Admin = () => {
 
     const post: Post = {
       author: "edmund",
+      title: title,
       path: files[0].name,
       timestamp: new Date().toJSON(),
     };
@@ -64,14 +66,27 @@ const Admin = () => {
           encType="multipart/form-data"
         >
           <FormControl>
-            <FormLabel>Add Blog Post</FormLabel>
-            <Input type="file" accept=".md" onChange={onFileChange} />
-            {!isError ? (
-              <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
-            ) : (
+            <Input
+              type="text"
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+              placeholder="Blog Title"
+            />
+            <FormLabel mt={3}>Add Blog Post</FormLabel>
+            <Input
+              type="file"
+              accept=".md"
+              onChange={onFileChange}
+              display="flex"
+              alignItems="center"
+              p={1}
+            />
+            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
+            {isError && (
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
-            <Input type="submit" />
+            <Input type="submit" mt={3} />
           </FormControl>
         </form>
       </Box>

@@ -1,4 +1,9 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+
+const config: ThemeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
 
 const colors = {
   brand: {
@@ -6,6 +11,15 @@ const colors = {
     200: "#EBFFFFB2",
     300: "#1C1C1D",
   },
+};
+
+const styles = {
+  global: (props) => ({
+    body: {
+      bg: "brand.300",
+      color: "brand.100",
+    },
+  }),
 };
 
 const components = {
@@ -18,10 +32,10 @@ const components = {
       link: {
         _hover: {
           textDecoration: "none",
-          color: "brand.100"
-        }
-      }
-    }
+          color: "brand.100",
+        },
+      },
+    },
   },
 };
 
@@ -31,9 +45,11 @@ const fonts = {
 };
 
 const theme = extendTheme({
+  config,
   components,
   colors,
   fonts,
+  styles,
 });
 
 export default theme;
