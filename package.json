@@ -1,4 +1,9 @@
 {
+  "name": "edmund3rd-homepage",
+  "version": "0.1.0",
+  "description": "Edmund's Personal Website",
+  "author": "Edmund Nillas III",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
