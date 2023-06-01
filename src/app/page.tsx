@@ -18,14 +18,14 @@ import {
   DiMysql,
 } from "react-icons/di";
 import { SiExpress, SiFirebase } from "react-icons/si";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
+import { motion } from "framer-motion";
+import { type DocumentData } from "firebase/firestore";
 
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
 import { getPosts } from "../utils/database";
-import { DocumentData } from "firebase/firestore";
 
 const SkillItem = ({ icon, color, children }) => {
   const item = {
