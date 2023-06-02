@@ -5,10 +5,22 @@ import { type Post } from "./database";
 
 export async function uploadPost(post: Post, file: File) {
   const { author, path, timestamp } = post;
-  const postRef = ref(storage, `posts/${author}/${timestamp}/${path}`);
+  const postRef = ref(storage, `blog_posts/${author}/${timestamp}/${path}`);
   const response = await uploadBytes(postRef, file);
 
   return response;
+}
+
+export async function uploadImages(imagePaths: string[], images: File[]) {
+  imagePaths.forEach(async (imagePath, i) => {
+    const imageRef = ref(storage, imagePath);
+    await uploadBytes(imageRef, images[i]);
+  });
+}
+
+export async function getImage(path: string) {
+  const imgReference = ref(storage, `blog_posts_images/${path}`);
+  return await getDownloadURL(imgReference);
 }
 
 export async function getMarkdownPost(post: Post) {

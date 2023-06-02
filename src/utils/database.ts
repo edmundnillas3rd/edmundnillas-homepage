@@ -17,16 +17,18 @@ export interface Post {
   title: string;
   path: string;
   timestamp: string;
+  images: string[];
 }
 
 export async function addPost(post: Post) {
   try {
-    const { author, title, path, timestamp } = post;
-    const docRef = await addDoc(collection(database, "posts"), {
+    const { author, title, path, timestamp, images } = post;
+    const docRef = await addDoc(collection(database, "blog_posts"), {
       author,
       title,
-      path: `posts/${author}/${timestamp}/${path}`,
+      path: `blog_posts/${author}/${timestamp}/${path}`,
       timestamp,
+      images
     });
   } catch (error) {
     console.error(error);
@@ -35,7 +37,7 @@ export async function addPost(post: Post) {
 
 export async function getPosts() {
   const posts: DocumentData = [];
-  const q = query(collection(database, "posts"), limit(10));
+  const q = query(collection(database, "blog_posts"), limit(10));
 
   const querySnapshot = await getDocs(q);
 
@@ -45,7 +47,7 @@ export async function getPosts() {
 }
 
 export async function getPost(id: string) {
-  const docPostRef = doc(database, "posts", id);
+  const docPostRef = doc(database, "blog_posts", id);
   const docSnap = await getDoc(docPostRef);
 
   if (docSnap.exists()) {

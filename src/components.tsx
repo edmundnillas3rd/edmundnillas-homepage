@@ -1,4 +1,6 @@
 import { Image, Heading, Text, VStack } from "@chakra-ui/react";
+import { useState } from "react";
+import { getImage } from "./utils/storage";
 
 export const components = {
   h1: "h3",
@@ -8,23 +10,35 @@ export const components = {
   h6: "h3",
   h3({ children, ...props }) {
     return (
-      <Heading as="h3" size="md" mb={3} {...props}>
+      <Heading as="h3" size="md" mb={3}>
         {children}
       </Heading>
     );
   },
 
   img({ ...props }) {
+    const [src, setSrc] = useState("");
+
+    getImage(props.src).then(value => {
+      setSrc(value);
+    }).catch(error => {
+      switch(error.code) {
+        case 'storage/object-not-found':
+          setSrc(props.src)
+          break;
+      }
+    })
+
     return (
-      <VStack justify="center" align="center" spacing={3} my={5}>
-        <Image boxSize="lg" {...props} />
+      <VStack as="div" justify="center" align="center" spacing={3} my={5}>
+        <Image boxSize="lg" src={src}  alt={props.alt} />
       </VStack>
     );
   },
 
-  p({ node, inline, className, children, ...props }) {
+  p({ children, ...props }) {
     return (
-      <Text color="brand.200" {...props}>
+      <Text as="div" color="brand.200">
         {children}
       </Text>
     );

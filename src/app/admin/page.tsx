@@ -12,20 +12,24 @@ import {
 import { useState } from "react";
 
 import { type Post, addPost } from "../../utils/database";
-import { uploadPost } from "../../utils/storage";
+import { uploadImages, uploadPost } from "../../utils/storage";
 
 const Admin = () => {
-  const [file, setFiles] = useState<File>();
+  const [imageFiles, setImageFiles] = useState<File[]>();
+  const [markdownFile, setMarkdownFile] = useState<File>();
   const [title, setTitle] = useState<string>("");
 
-  const isError = file?.type !== "text/markdown";
+  const isError = markdownFile?.type !== "text/markdown";
+
+  const onImageFileChange = (e) => {
+    e.preventDefault();
+    setImageFiles(Array.from(e.target.files));
+  };
 
   const onFileChange = (e) => {
     e.preventDefault();
 
-    if (e.target.files.length > 1) return;
-
-    setFiles(e.target.files[0]);
+    setMarkdownFile(e.target.files[0]);
   };
 
   const onFileSubmit = (e) => {
@@ -33,19 +37,25 @@ const Admin = () => {
 
     if (isError) return;
 
+    let images = imageFiles?.map((image) => {
+      return `blog_posts_images/${markdownFile.name}/${image.name}`;
+    }) as string[];
+
     const post: Post = {
       author: "edmund",
       title: title,
-      path: file.name,
+      path: markdownFile.name,
       timestamp: new Date().toJSON(),
+      images
     };
 
-    uploadPost(post, file)
-      .then((result) => console.log(result))
+    uploadPost(post, markdownFile)
+      .catch((reason) => console.error(reason));
+
+    uploadImages(post.images, imageFiles as File[])
       .catch((reason) => console.error(reason));
 
     addPost(post)
-      .then((result) => console.log(result))
       .catch((reason) => console.error(reason));
   };
 
@@ -77,6 +87,14 @@ const Admin = () => {
               type="file"
               accept=".md"
               onChange={onFileChange}
+              display="flex"
+              alignItems="center"
+              p={1}
+            />
+            <Input
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              onChange={onImageFileChange}
               display="flex"
               alignItems="center"
               p={1}
