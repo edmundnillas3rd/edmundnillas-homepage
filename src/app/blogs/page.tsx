@@ -18,7 +18,7 @@ const Blogs = () => {
     });
   }, []);
   return (
-    <Container size="container.lg" my={5}>
+    <Container size="container.lg" py={5}>
       <Section title="Blogs">
           <List
             spacing={3}
