@@ -9,20 +9,23 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
 import { type Post, addPost } from "../../utils/database";
 import { uploadPost } from "../../utils/storage";
 
 const Admin = () => {
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFiles] = useState<File>();
   const [title, setTitle] = useState<string>("");
 
-  const isError = files[0]?.type !== "text/markdown";
+  const isError = file?.type !== "text/markdown";
 
   const onFileChange = (e) => {
-    setFiles(Array.from(e.target.files) ?? []);
+    e.preventDefault();
+
+    if (e.target.files.length > 1) return;
+
+    setFiles(e.target.files[0]);
   };
 
   const onFileSubmit = (e) => {
@@ -33,11 +36,11 @@ const Admin = () => {
     const post: Post = {
       author: "edmund",
       title: title,
-      path: files[0].name,
+      path: file.name,
       timestamp: new Date().toJSON(),
     };
 
-    uploadPost(post, files[0])
+    uploadPost(post, file)
       .then((result) => console.log(result))
       .catch((reason) => console.error(reason));
 
@@ -56,10 +59,6 @@ const Admin = () => {
       h="100vh"
     >
       <Box p={10} border="1px" borderColor="brand.200" borderRadius="5px">
-        {/* <Button leftIcon={<AddIcon />} colorScheme="brand.200">
-          Add Blog Post
-        </Button> */}
-
         <form
           onSubmit={onFileSubmit}
           method="POST"
