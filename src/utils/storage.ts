@@ -1,7 +1,5 @@
 import { ref, uploadBytes, getDownloadURL, getBlob } from "firebase/storage";
-
 import { storage } from "./firebaseConfig";
-import { type Post } from "./database";
 
 export async function uploadPost(post: Post, file: File) {
   const { author, path, timestamp } = post;

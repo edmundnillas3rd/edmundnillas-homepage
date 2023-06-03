@@ -4,7 +4,7 @@ import { Container, Text, VStack } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { type Post, getPost, getPosts } from "../../../utils/database";
+import { getPost, getPosts } from "../../../utils/database";
 import { getMarkdownPost } from "../../../utils/storage";
 import { components } from "../../../components";
 
@@ -25,18 +25,6 @@ export async function generateStaticParams() {
 export default async function Page({ params }: Params) {
   const post = await getPost(params.slug);
   const markdown = await getMarkdownPost(post as Post);
-
-  // const [post, setPost] = useState<Post>();
-  // const [markdown, setMarkdown] = useState<string>("");
-
-  // useEffect(() => {
-  //   (async function () {
-  //     const p = await getPost(params.slug);
-  //     const m = await getMarkdownPost(p as Post);
-  //     setPost(p as Post);
-  //     setMarkdown(m);
-  //   })();
-  // }, []);
 
   return (
     <Container maxW="container.lg" py={5}>

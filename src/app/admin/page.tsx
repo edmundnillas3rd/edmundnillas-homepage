@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { type Post, addPost } from "../../utils/database";
+import { addPost } from "../../utils/database";
 import { uploadImages, uploadPost } from "../../utils/storage";
 
 const Admin = () => {

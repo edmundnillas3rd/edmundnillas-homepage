@@ -12,14 +12,8 @@ import {
 } from "firebase/firestore";
 import { database } from "./firebaseConfig";
 
-export interface Post {
-  author: string;
-  title: string;
-  path: string;
-  timestamp: string;
-  images: string[];
-}
-
+// TODO (Edmund): Revise the function in order to insert document id
+// before the document gets created
 export async function addPost(post: Post) {
   try {
     const { author, title, path, timestamp, images } = post;
@@ -28,7 +22,7 @@ export async function addPost(post: Post) {
       title,
       path: `blog_posts/${author}/${timestamp}/${path}`,
       timestamp,
-      images
+      images,
     });
   } catch (error) {
     console.error(error);
