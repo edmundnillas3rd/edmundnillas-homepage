@@ -14,12 +14,12 @@ import { useState } from "react";
 import { addPost } from "../../utils/database";
 import { uploadImages, uploadPost } from "../../utils/storage";
 
-const Admin = () => {
+export default function Admin() {
   const [imageFiles, setImageFiles] = useState<File[]>();
   const [markdownFile, setMarkdownFile] = useState<File>();
   const [title, setTitle] = useState<string>("");
 
-  const isError = markdownFile?.type !== "text/markdown";
+  let isError = false;
 
   const onImageFileChange = (e) => {
     e.preventDefault();
@@ -27,6 +27,7 @@ const Admin = () => {
   };
 
   const onFileChange = (e) => {
+    isError = markdownFile?.type !== "text/markdown";
     e.preventDefault();
 
     setMarkdownFile(e.target.files[0]);
@@ -38,20 +39,20 @@ const Admin = () => {
     if (isError) return;
 
     let images = imageFiles?.map((image) => {
-      return `blog_posts_images/${markdownFile.name}/${image.name}`;
+      return `blog_posts_images/${markdownFile?.name}/${image.name}`;
     }) as string[];
 
     const post: Post = {
       author: "edmund",
       title,
-      path: markdownFile.name,
+      path: markdownFile?.name as string,
       timestamp: new Date().toJSON(),
       images,
     };
 
     const id = await addPost(post);
 
-    await uploadPost(id, markdownFile);
+    await uploadPost(id, markdownFile as File);
     await uploadImages(post.images, imageFiles as File[]);
   };
 
@@ -87,6 +88,7 @@ const Admin = () => {
               alignItems="center"
               p={1}
             />
+            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
             <Input
               type="file"
               accept=".png, .jpg, .jpeg"
@@ -95,7 +97,9 @@ const Admin = () => {
               alignItems="center"
               p={1}
             />
-            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
+            <FormHelperText>
+              Valid files (i.e. '.png, .jpg, jpeg')
+            </FormHelperText>
             {isError && (
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
@@ -105,6 +109,4 @@ const Admin = () => {
       </Box>
     </Container>
   );
-};
-
-export default Admin;
+}
