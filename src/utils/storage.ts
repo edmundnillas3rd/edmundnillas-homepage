@@ -1,9 +1,14 @@
+import { getDoc, doc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, getBlob } from "firebase/storage";
-import { storage } from "./firebaseConfig";
+import { database, storage } from "./firebaseConfig";
 
-export async function uploadPost(post: Post, file: File) {
-  const { author, path, timestamp } = post;
-  const postRef = ref(storage, `blog_posts/${author}/${timestamp}/${path}`);
+export async function uploadPost(id: string, file: File) {
+  const snap = await getDoc(doc(database, "blog_posts", id));
+
+  if (!snap.exists()) return null;
+
+  const { path } = snap.data();
+  const postRef = ref(storage, path);
   const response = await uploadBytes(postRef, file);
 
   return response;

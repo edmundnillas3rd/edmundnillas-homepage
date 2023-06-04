@@ -32,7 +32,7 @@ const Admin = () => {
     setMarkdownFile(e.target.files[0]);
   };
 
-  const onFileSubmit = (e) => {
+  const onFileSubmit = async (e) => {
     e.preventDefault();
 
     if (isError) return;
@@ -43,20 +43,16 @@ const Admin = () => {
 
     const post: Post = {
       author: "edmund",
-      title: title,
+      title,
       path: markdownFile.name,
       timestamp: new Date().toJSON(),
-      images
+      images,
     };
 
-    uploadPost(post, markdownFile)
-      .catch((reason) => console.error(reason));
+    const id = await addPost(post);
 
-    uploadImages(post.images, imageFiles as File[])
-      .catch((reason) => console.error(reason));
-
-    addPost(post)
-      .catch((reason) => console.error(reason));
+    await uploadPost(id, markdownFile);
+    await uploadImages(post.images, imageFiles as File[]);
   };
 
   return (

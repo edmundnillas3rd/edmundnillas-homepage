@@ -6,27 +6,35 @@ import {
   getDoc,
   getDocs,
   DocumentData,
-  where,
   documentId,
   doc,
+  setDoc,
 } from "firebase/firestore";
 import { database } from "./firebaseConfig";
 
 // TODO (Edmund): Revise the function in order to insert document id
 // before the document gets created
 export async function addPost(post: Post) {
-  try {
-    const { author, title, path, timestamp, images } = post;
-    const docRef = await addDoc(collection(database, "blog_posts"), {
-      author,
-      title,
-      path: `blog_posts/${author}/${timestamp}/${path}`,
-      timestamp,
-      images,
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  const { author, title, path, timestamp, images } = post;
+
+  const docRef = doc(collection(database, "blog_posts"));
+  await setDoc(docRef, {
+    author,
+    title,
+    path: `blog_posts/${author}/${docRef.id}/${path}`,
+    timestamp,
+    images
+  })
+
+  // const docRef = await addDoc(collection(database, "blog_posts"), {
+  //   author,
+  //   title,
+  //   path,
+  //   timestamp,
+  //   images,
+  // });
+
+  return docRef.id;
 }
 
 export async function getPosts() {
