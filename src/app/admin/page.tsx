@@ -119,7 +119,7 @@ export default function Page() {
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
             <Input type="submit" mt={3} isDisabled={signedIn} />
-            {!signedIn ? (
+            {signedIn ? (
               <Button
                 onClick={(e) => {
                   signOutAdmin();
