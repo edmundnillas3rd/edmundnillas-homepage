@@ -1,0 +1,13 @@
+# Node.js
+/node_modules/
+
+# Next.js
+/.next/
+
+# Env
+.env
+.env.development
+.env.production
+
+# Test
+/.test.mdfiles/
