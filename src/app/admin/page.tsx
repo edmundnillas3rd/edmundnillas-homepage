@@ -31,6 +31,8 @@ export default function Page() {
 
   useEffect(() => {
     initFirebaseAuth();
+
+    setSignedIn(isUserSignedIn());
   }, []);
 
   const onImageFileChange = (e) => {
@@ -124,7 +126,6 @@ export default function Page() {
                 onClick={(e) => {
                   signOutAdmin();
                   setSignedIn(isUserSignedIn());
-
                 }}
               >
                 Sign Out

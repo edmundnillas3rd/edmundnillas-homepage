@@ -9,8 +9,9 @@ import { auth } from "./firebaseConfig";
 export function initFirebaseAuth() {
   onAuthStateChanged(auth, (user) => {
     if (user) {
+      console.log("user currently signed");
     } else {
-      console.log("user not signed in: ", user);
+      console.log("user not signed in");
     }
   });
 }
