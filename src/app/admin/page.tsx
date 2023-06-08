@@ -1,6 +1,6 @@
 "use client";
+
 import {
-  Button,
   Container,
   Box,
   Input,
@@ -8,18 +8,30 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  initFirebaseAuth,
+  isUserSignedIn,
+  signInAdmin,
+  signOutAdmin,
+} from "../../utils/authentication";
 
 import { addPost } from "../../utils/database";
 import { uploadImages, uploadPost } from "../../utils/storage";
 
-const Admin = () => {
+export default function Page() {
   const [imageFiles, setImageFiles] = useState<File[]>();
   const [markdownFile, setMarkdownFile] = useState<File>();
   const [title, setTitle] = useState<string>("");
+  const [signedIn, setSignedIn] = useState<boolean>(false);
 
-  const isError = markdownFile?.type !== "text/markdown";
+  let isError = false;
+
+  useEffect(() => {
+    initFirebaseAuth();
+  }, []);
 
   const onImageFileChange = (e) => {
     e.preventDefault();
@@ -27,6 +39,7 @@ const Admin = () => {
   };
 
   const onFileChange = (e) => {
+    isError = markdownFile?.type !== "text/markdown";
     e.preventDefault();
 
     setMarkdownFile(e.target.files[0]);
@@ -38,20 +51,20 @@ const Admin = () => {
     if (isError) return;
 
     let images = imageFiles?.map((image) => {
-      return `blog_posts_images/${markdownFile.name}/${image.name}`;
+      return `blog_posts_images/${markdownFile?.name}/${image.name}`;
     }) as string[];
 
     const post: Post = {
       author: "edmund",
       title,
-      path: markdownFile.name,
+      path: markdownFile?.name as string,
       timestamp: new Date().toJSON(),
       images,
     };
 
     const id = await addPost(post);
 
-    await uploadPost(id, markdownFile);
+    await uploadPost(id, markdownFile as File);
     await uploadImages(post.images, imageFiles as File[]);
   };
 
@@ -77,6 +90,7 @@ const Admin = () => {
                 setTitle(e.target.value);
               }}
               placeholder="Blog Title"
+              isDisabled={signedIn}
             />
             <FormLabel mt={3}>Add Blog Post</FormLabel>
             <Input
@@ -86,7 +100,9 @@ const Admin = () => {
               display="flex"
               alignItems="center"
               p={1}
+              isDisabled={signedIn}
             />
+            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
             <Input
               type="file"
               accept=".png, .jpg, .jpeg"
@@ -94,17 +110,39 @@ const Admin = () => {
               display="flex"
               alignItems="center"
               p={1}
+              isDisabled={signedIn}
             />
-            <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
+            <FormHelperText>
+              Valid files (i.e. '.png, .jpg, jpeg')
+            </FormHelperText>
             {isError && (
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
-            <Input type="submit" mt={3} />
+            <Input type="submit" mt={3} isDisabled={signedIn} />
+            {!signedIn ? (
+              <Button
+                onClick={(e) => {
+                  signOutAdmin();
+                  setSignedIn(isUserSignedIn());
+
+                }}
+                isDisabled={signedIn}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button
+                onClick={(e) => {
+                  signInAdmin();
+                  setSignedIn(isUserSignedIn());
+                }}
+              >
+                Sign In
+              </Button>
+            )}
           </FormControl>
         </form>
       </Box>
     </Container>
   );
-};
-
-export default Admin;
+}

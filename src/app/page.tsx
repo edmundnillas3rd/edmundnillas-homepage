@@ -47,7 +47,7 @@ const SkillItem = ({ icon, color, children }) => {
   );
 };
 
-const App = () => {
+export default function App() {
   const [posts, setPosts] = useState<DocumentData>();
   useEffect(() => {
     getPosts().then((data) => {
@@ -153,18 +153,10 @@ const App = () => {
           </ProjectCard>
         </Section>
         <Section title="Blogs">
-          <List
-            spacing={3}
-            display="flex"
-            flexDir="column"
-          >
+          <List spacing={3} display="flex" flexDir="column">
             {posts &&
               posts.map((post, index) => (
-                <ListItem
-                  as={NextLink}
-                  key={index}
-                  href={`blogs/${post.id}`}
-                >
+                <ListItem as={NextLink} key={index} href={`blogs/${post.id}`}>
                   {post.data.title}
                 </ListItem>
               ))}
@@ -173,6 +165,4 @@ const App = () => {
       </Flex>
     </>
   );
-};
-
-export default App;
+}
