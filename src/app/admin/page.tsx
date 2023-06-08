@@ -90,7 +90,7 @@ export default function Page() {
                 setTitle(e.target.value);
               }}
               placeholder="Blog Title"
-              isDisabled={signedIn}
+              isDisabled={!signedIn}
             />
             <FormLabel mt={3}>Add Blog Post</FormLabel>
             <Input
@@ -100,7 +100,7 @@ export default function Page() {
               display="flex"
               alignItems="center"
               p={1}
-              isDisabled={signedIn}
+              isDisabled={!signedIn}
             />
             <FormHelperText>Valid files (i.e. '.md')</FormHelperText>
             <Input
@@ -110,7 +110,7 @@ export default function Page() {
               display="flex"
               alignItems="center"
               p={1}
-              isDisabled={signedIn}
+              isDisabled={!signedIn}
             />
             <FormHelperText>
               Valid files (i.e. '.png, .jpg, jpeg')
@@ -118,7 +118,7 @@ export default function Page() {
             {isError && (
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
-            <Input type="submit" mt={3} isDisabled={signedIn} />
+            <Input type="submit" mt={3} isDisabled={!signedIn} />
             {signedIn ? (
               <Button
                 onClick={(e) => {
@@ -126,7 +126,6 @@ export default function Page() {
                   setSignedIn(isUserSignedIn());
 
                 }}
-                isDisabled={signedIn}
               >
                 Sign Out
               </Button>
