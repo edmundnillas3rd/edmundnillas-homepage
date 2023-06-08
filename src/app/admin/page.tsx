@@ -30,9 +30,10 @@ export default function Page() {
   let isError = false;
 
   useEffect(() => {
-    initFirebaseAuth();
+    initFirebaseAuth((user) => {
+      setSignedIn(!!user);
+    });
 
-    setSignedIn(isUserSignedIn());
   }, []);
 
   const onImageFileChange = (e) => {
@@ -48,6 +49,9 @@ export default function Page() {
   };
 
   const onFileSubmit = async (e) => {
+    
+    if (!isUserSignedIn()) return;
+
     e.preventDefault();
 
     if (isError) return;

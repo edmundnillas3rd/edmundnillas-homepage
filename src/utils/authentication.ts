@@ -6,14 +6,8 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 
-export function initFirebaseAuth() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("user currently signed");
-    } else {
-      console.log("user not signed in");
-    }
-  });
+export function initFirebaseAuth(callback) {
+  onAuthStateChanged(auth, callback);
 }
 
 export async function signInAdmin() {
