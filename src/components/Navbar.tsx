@@ -1,3 +1,4 @@
+"use client";
 import NextLink from "next/link";
 import {
   Flex,
@@ -7,8 +8,6 @@ import {
   Container,
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
