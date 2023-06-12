@@ -68,14 +68,14 @@ export default function App() {
           <Text color="brand.200">
             Hi I'm{" "}
             <Text as="span" color="brand.100">
-              Edmund,
-            </Text>{" "}
-            a full stack web developer.
+              Edmund
+            </Text>
+            {""}, a full stack web developer.
           </Text>
         </Flex>
       </Container>
       <Flex direction="column" gap={5}>
-        <Section title="About">
+        <Section title="About" id="about">
           <Text color="brand.200">
             &emsp;At the onset of the pandemic, I have been honing my skills in
             web development, constantly building side projects, either for my
@@ -83,7 +83,7 @@ export default function App() {
             about tech related subjects.
           </Text>
         </Section>
-        <Section title="Technologies Used">
+        <Section title="Technologies Used" id="technologies">
           <Flex>
             <List as={motion.ul} animate="visible" variants={list} spacing={3}>
               <SkillItem icon={AiFillHtml5} color="orange.500">
@@ -122,7 +122,7 @@ export default function App() {
             </List>
           </Flex>
         </Section>
-        <Section title="Projects">
+        <Section title="Projects" id="projects">
           <ProjectCard
             title="Plaza"
             demoUrl="https://plaza-g5bz.onrender.com/"
@@ -152,7 +152,7 @@ export default function App() {
             </Text>
           </ProjectCard>
         </Section>
-        <Section title="Blogs">
+        {/* <Section title="Blogs">
           <List spacing={3} display="flex" flexDir="column">
             {posts &&
               posts.map((post, index) => (
@@ -161,7 +161,7 @@ export default function App() {
                 </ListItem>
               ))}
           </List>
-        </Section>
+        </Section> */}
       </Flex>
     </>
   );

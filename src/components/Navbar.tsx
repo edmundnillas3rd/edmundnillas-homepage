@@ -23,17 +23,31 @@ const Navbar = () => {
 
   return (
     <>
-      <Container maxW="container.lg" py={5}>
+      <Container
+        maxW="container.lg"
+        position="sticky"
+        bg="brand.300"
+        top={0}
+        left={0}
+        py={3}
+        opacity="80%"
+      >
         <Flex align="center">
           <Text>Edmund Nillas III</Text>
           <Spacer />
           <Flex>
             <Flex gap={10} display={{ base: "none", md: "flex", lg: "flex" }}>
-              <Link as={NextLink} href="/">
-                Home
+              <Link as={NextLink} href="#about">
+                About
               </Link>
-              <Link as={NextLink} href="/blogs">
+              {/* <Link as={NextLink} href="/blogs">
                 Blogs
+              </Link> */}
+              <Link as={NextLink} href="#technologies">
+                Technologies Used
+              </Link>
+              <Link as={NextLink} href="#projects">
+                Projects
               </Link>
             </Flex>
             <IconButton
