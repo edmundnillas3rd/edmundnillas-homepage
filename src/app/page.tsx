@@ -143,7 +143,7 @@ export default function App() {
             </Text>
           </ProjectCard>
           <ProjectCard
-            title="AnathemOS"
+            title="AnathemaOS"
             codeUrl="https://github.com/edmundnillas3rd/AnathemOS"
           >
             <Text color="brand.200">

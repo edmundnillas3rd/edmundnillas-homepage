@@ -1103,7 +1103,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/system@npm:2.5.8":
+"@chakra-ui/system@npm:2.5.8, @chakra-ui/system@npm:^2.5.8":
   version: 2.5.8
   resolution: "@chakra-ui/system@npm:2.5.8"
   dependencies:
@@ -1570,14 +1570,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@firebase/app-types@npm:0.9.0":
+"@firebase/app-types@npm:0.9.0, @firebase/app-types@npm:^0.9.0":
   version: 0.9.0
   resolution: "@firebase/app-types@npm:0.9.0"
   checksum: e79bd3c4a8d6b911326fe83fddca8d8922ea5880fcb3ad72d3561b51e3d01f22669cdc6d61d2ec48ac9c5e763e3d44b7b6736cadf36a0827d7f62447bde4b12e
   languageName: node
   linkType: hard
 
-"@firebase/app@npm:0.9.12":
+"@firebase/app@npm:0.9.12, @firebase/app@npm:^0.9.12":
   version: 0.9.12
   resolution: "@firebase/app@npm:0.9.12"
   dependencies:
@@ -3989,11 +3989,15 @@ __metadata:
     "@chakra-ui/icons": ^2.0.19
     "@chakra-ui/next-js": ^2.1.3
     "@chakra-ui/react": ^2.7.0
+    "@chakra-ui/system": ^2.5.8
     "@emotion/react": ^11.11.1
     "@emotion/styled": ^11.11.0
+    "@firebase/app": ^0.9.12
+    "@firebase/app-types": ^0.9.0
     "@fontsource/source-code-pro": ^5.0.0
     "@types/node": ^20.1.4
     "@types/react": ^18.2.6
+    encoding: ^0.1.13
     firebase: ^9.22.1
     firebase-tools: ^12.2.1
     framer-motion: ^10.12.16
