@@ -71,11 +71,14 @@ const Navbar = () => {
           <DrawerCloseButton />
           <DrawerBody p={10}>
             <Flex gap={10} direction="column" align="center">
-              <Link as={NextLink} href="/">
-                Home
+              <Link as={NextLink} href="#about">
+                About
               </Link>
-              <Link as={NextLink} href="/blogs">
-                Blogs
+              <Link as={NextLink} href="#technologies">
+                Technologies
+              </Link>
+              <Link as={NextLink} href="#projects">
+                Projects
               </Link>
             </Flex>
           </DrawerBody>
