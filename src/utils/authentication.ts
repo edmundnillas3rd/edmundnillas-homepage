@@ -1,8 +1,9 @@
 import {
-  GoogleAuthProvider,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
   signInWithPopup,
   signOut,
+  UserCredential,
 } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 
@@ -10,9 +11,10 @@ export function initFirebaseAuth(callback) {
   onAuthStateChanged(auth, callback);
 }
 
-export async function signInAdmin() {
-  const provider = new GoogleAuthProvider();
-  await signInWithPopup(auth, provider);
+export async function signInAdmin(email: string, password: string) {
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+  return userCredential.user;
 }
 
 export function signOutAdmin() {

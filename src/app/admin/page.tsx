@@ -10,11 +10,12 @@ import {
   FormHelperText,
   Button,
 } from "@chakra-ui/react";
+
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   initFirebaseAuth,
   isUserSignedIn,
-  signInAdmin,
   signOutAdmin,
 } from "../../utils/authentication";
 
@@ -27,13 +28,16 @@ export default function Page() {
   const [title, setTitle] = useState<string>("");
   const [signedIn, setSignedIn] = useState<boolean>(false);
 
+  const router = useRouter();
+
   let isError = false;
 
   useEffect(() => {
     initFirebaseAuth((user) => {
       setSignedIn(!!user);
-    });
 
+      if (!isUserSignedIn()) router.push("/auth");
+    });
   }, []);
 
   const onImageFileChange = (e) => {
@@ -49,7 +53,6 @@ export default function Page() {
   };
 
   const onFileSubmit = async (e) => {
-    
     if (!isUserSignedIn()) return;
 
     e.preventDefault();
@@ -89,7 +92,7 @@ export default function Page() {
           method="POST"
           encType="multipart/form-data"
         >
-          <FormControl>
+          <FormControl isInvalid={isError}>
             <Input
               type="text"
               onChange={(e) => {
@@ -125,7 +128,7 @@ export default function Page() {
               <FormErrorMessage>Only Markdown file is allowed</FormErrorMessage>
             )}
             <Input type="submit" mt={3} isDisabled={!signedIn} />
-            {signedIn ? (
+            {signedIn && (
               <Button
                 onClick={(e) => {
                   signOutAdmin();
@@ -133,15 +136,6 @@ export default function Page() {
                 }}
               >
                 Sign Out
-              </Button>
-            ) : (
-              <Button
-                onClick={(e) => {
-                  signInAdmin();
-                  setSignedIn(isUserSignedIn());
-                }}
-              >
-                Sign In
               </Button>
             )}
           </FormControl>
