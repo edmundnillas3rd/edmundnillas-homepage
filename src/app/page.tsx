@@ -152,16 +152,18 @@ export default function App() {
             </Text>
           </ProjectCard>
         </Section>
-        {/* <Section title="Blogs">
-          <List spacing={3} display="flex" flexDir="column">
-            {posts &&
-              posts.map((post, index) => (
-                <ListItem as={NextLink} key={index} href={`blogs/${post.id}`}>
-                  {post.data.title}
-                </ListItem>
-              ))}
-          </List>
-        </Section> */}
+        {posts?.length !== 0 && (
+          <Section title="Blogs" id="blogs">
+            <List spacing={3} display="flex" flexDir="column">
+              {posts &&
+                posts.map((post, index) => (
+                  <ListItem as={NextLink} key={index} href={`blogs/${post.id}`}>
+                    {post.data.title}
+                  </ListItem>
+                ))}
+            </List>
+          </Section>
+        )}
       </Flex>
     </>
   );
