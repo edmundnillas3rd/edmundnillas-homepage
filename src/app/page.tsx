@@ -134,21 +134,24 @@ export default function App() {
             </Text>
           </ProjectCard>
           <ProjectCard
+            title="CCIS Scheduler"
+            demoUrl="https://ccis-scheduler.onrender.com/"
+            codeUrl="https://github.com/edmundnillas3rd/CCIS-Scheduler"
+          >
+            <Text color="brand.200">
+              A project whose primary feature was for a student to set a
+              scheduled meeting with the faculty staff of my school for varied
+              reasons. This particular project aims to resolve the conflicting
+              issues of schedules of teachers and students in my school.
+            </Text>
+          </ProjectCard>
+          <ProjectCard
             title="Simulacra"
             codeUrl="https://github.com/edmundnillas3rd/Simulacra"
           >
             <Text color="brand.200">
               A rendering engine made in C++ and OpenGL. Design for visualizing
               data and algorithms, as well for game development.
-            </Text>
-          </ProjectCard>
-          <ProjectCard
-            title="AnathemaOS"
-            codeUrl="https://github.com/edmundnillas3rd/AnathemOS"
-          >
-            <Text color="brand.200">
-              A homebrew operating system, made for the sake of challenging
-              myself into making a personalize system that fits my needs.
             </Text>
           </ProjectCard>
         </Section>
