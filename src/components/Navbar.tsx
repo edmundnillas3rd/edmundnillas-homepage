@@ -80,6 +80,9 @@ const Navbar = () => {
               <Link as={NextLink} href="#projects">
                 Projects
               </Link>
+              <Link as={NextLink} href="#blogs">
+                Blogs
+              </Link>
             </Flex>
           </DrawerBody>
         </DrawerContent>
