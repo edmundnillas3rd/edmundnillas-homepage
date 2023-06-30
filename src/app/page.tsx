@@ -1,6 +1,7 @@
 "use client";
 import {
   Container,
+  Box,
   Text,
   Flex,
   Spacer,
@@ -16,7 +17,9 @@ import {
   DiMongodb,
   DiSass,
   DiMysql,
+  DiGithubBadge,
 } from "react-icons/di";
+import { CiLinkedin } from "react-icons/ci";
 import { SiExpress, SiFirebase } from "react-icons/si";
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
@@ -65,13 +68,29 @@ export default function App() {
     <>
       <Container h="100vh">
         <Flex direction="column" justify="center" align="center" h="100%">
-          <Text color="brand.200">
+          <Text color="brand.200" textAlign="center">
             Hi I'm{" "}
             <Text as="span" color="brand.100">
               Edmund
             </Text>
             {""}, a full stack web developer.
           </Text>
+
+          <Box display="flex" p={10} gap={2}>
+            <NextLink href="https://github.com/edmundnillas3rd" legacyBehavior>
+              <a target="_blank">
+                <DiGithubBadge size={32} />
+              </a>
+            </NextLink>
+            <NextLink
+              href="https://linkedin.com/in/edmund-nillas-iii-178a361b6"
+              legacyBehavior
+            >
+              <a target="_blank">
+                <CiLinkedin size={32} />
+              </a>
+            </NextLink>
+          </Box>
         </Flex>
       </Container>
       <Flex direction="column" gap={5}>
@@ -79,7 +98,7 @@ export default function App() {
           <Text color="brand.200">
             &emsp;At the onset of the pandemic, I have been honing my skills in
             web development, constantly building side projects, either for my
-            amusement or for a purpose. I'm eager and enthusiastic to learn more
+            amusement or for a purpose. I am eager and enthusiastic to learn more
             about tech related subjects.
           </Text>
         </Section>
