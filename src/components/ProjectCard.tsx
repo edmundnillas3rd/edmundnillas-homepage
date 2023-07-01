@@ -4,7 +4,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const ProjectCard = ({ src = "", title, children, demoUrl = "", codeUrl }) => (
   <Flex gap={5}>
-    {src.length !== 0 && (
+    {!!src?.length && (
       <Box>
         <Image src={src} alt="project-img" />
       </Box>

@@ -174,7 +174,7 @@ export default function App() {
             </Text>
           </ProjectCard>
         </Section>
-        {posts?.length !== 0 && (
+        {!!posts?.length && (
           <Section title="Blogs" id="blogs">
             <List spacing={3} display="flex" flexDir="column">
               {posts &&
