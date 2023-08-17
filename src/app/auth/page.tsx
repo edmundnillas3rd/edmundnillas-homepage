@@ -25,15 +25,16 @@ export default async function Auth() {
 
   const router = useRouter();
 
-  const onUserSignIn = async (e) => {
+  const onUserSignIn = (e) => {
     e.preventDefault();
-    const user = await authUser(username, password);
+    authUser(username, password).then(user => {
+      if (user) {
+        router.push("/");
+      } else {
+        setErrorMessage("Unable to find user");
+      }
+    });
 
-    if (user) {
-      router.push("/");
-    } else {
-      setErrorMessage("Unable to find user");
-    }
   };
 
   return (
@@ -68,7 +69,7 @@ export default async function Auth() {
               }}
               placeholder="Password"
             />
-            <Button onClick={onUserSignIn}>Sign In</Button>
+            <Button>Sign In</Button>
           </FormControl>
         </form>
       </Box>
