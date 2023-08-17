@@ -11,10 +11,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  initFirebaseAuth,
   isUserSignedIn,
   signOutAdmin,
 } from "../../utils/authentication";
@@ -22,23 +20,13 @@ import {
 import { addPost } from "../../utils/database";
 import { uploadImages, uploadPost } from "../../utils/storage";
 
-export default function Page() {
+export default function Admin() {
   const [imageFiles, setImageFiles] = useState<File[]>();
   const [markdownFile, setMarkdownFile] = useState<File>();
   const [title, setTitle] = useState<string>("");
   const [signedIn, setSignedIn] = useState<boolean>(false);
 
-  const router = useRouter();
-
   let isError = false;
-
-  useEffect(() => {
-    initFirebaseAuth((user) => {
-      setSignedIn(!!user);
-
-      if (!isUserSignedIn()) router.push("/auth");
-    });
-  }, []);
 
   const onImageFileChange = (e) => {
     e.preventDefault();
@@ -46,13 +34,14 @@ export default function Page() {
   };
 
   const onFileChange = (e) => {
-    isError = markdownFile?.type !== "text/markdown";
     e.preventDefault();
+    isError = markdownFile?.type !== "text/markdown";
 
     setMarkdownFile(e.target.files[0]);
   };
 
   const onFileSubmit = async (e) => {
+    e.preventDefault();
     if (!isUserSignedIn()) return;
 
     e.preventDefault();
