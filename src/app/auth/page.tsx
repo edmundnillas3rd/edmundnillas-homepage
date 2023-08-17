@@ -25,16 +25,15 @@ export default async function Auth() {
 
   const router = useRouter();
 
-  const onUserSignIn = (e) => {
+  const onUserSignIn = async (e) => {
     e.preventDefault();
-    authUser(username, password).then(user => {
-      if (user) {
-        router.push("/");
-      } else {
-        setErrorMessage("Unable to find user");
-      }
-    });
+    const user = await authUser(username, password);
 
+    if (user) {
+      router.push("/");
+    } else {
+      setErrorMessage("Unable to find user");
+    }
   };
 
   return (
@@ -47,17 +46,16 @@ export default async function Auth() {
       h="100vh"
     >
       <Box p={10} border="1px" borderColor="brand.200" borderRadius="5px">
-        <form method="POST" onSubmit={onUserSignIn}>
           <FormControl
             display="flex"
             flexDir="column"
             gap={3}
-            isInvalid={!!errMessage}
           >
             {errMessage && <FormErrorMessage>{errMessage}</FormErrorMessage>}
             <Input
               type="email"
               onChange={(e) => {
+                e.preventDefault();
                 setUsername(e.target.value);
               }}
               placeholder="Email"
@@ -65,13 +63,13 @@ export default async function Auth() {
             <Input
               type="password"
               onChange={(e) => {
+                e.preventDefault();
                 setPassword(e.target.value);
               }}
               placeholder="Password"
             />
-            <Button>Sign In</Button>
+            <Button onClick={onUserSignIn}>Sign In</Button>
           </FormControl>
-        </form>
       </Box>
     </Container>
   );
