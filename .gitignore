@@ -11,15 +11,9 @@
 .env
 .env.development
 .env.production
-# NextJS
-/.next/
-
-# VSCode
-/.vscode/
 
 # Test
-/.test.mdfiles/
-/node_modules/
+**/.test.mdfiles/
 
 # Yarn
 .pnp.*
