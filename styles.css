@@ -1,3 +1,20 @@
+@font-face {
+    font-family: "Fira Mono";
+    src: url("assets/fonts/FiraMono-Regular.ttf"), url("assets/fonts/FiraMono-Medium.ttf"), url("assets/fonts/FiraMono-Bold.ttf");
+    font-weight: normal;
+    font-style: norma;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.fira-mono {
+    font-family: "Fira Mono";
+}
+
 .container {
     display: flex;
 }
