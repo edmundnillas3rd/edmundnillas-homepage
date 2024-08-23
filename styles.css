@@ -19,3 +19,7 @@ a {
 .fira-mono {
     font-family: "Fira Mono";
 }
+
+#landpage-canvas {
+    display: block;
+}
