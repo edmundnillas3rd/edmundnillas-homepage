@@ -11,10 +11,11 @@
     box-sizing: border-box;
 }
 
-.fira-mono {
-    font-family: "Fira Mono";
+a {
+    text-decoration: none;
+    color: #EEF0E4;
 }
 
-.container {
-    display: flex;
+.fira-mono {
+    font-family: "Fira Mono";
 }
