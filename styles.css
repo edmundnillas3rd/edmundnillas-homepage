@@ -11,8 +11,16 @@
     box-sizing: border-box;
 }
 
+ul {
+    list-style: none;
+}
+
 a {
     text-decoration: none;
+    color: #EEF0E4;
+}
+
+.white-text {
     color: #EEF0E4;
 }
 
@@ -24,4 +32,53 @@ a {
     display: block;
     width: 100vw;
     height: 100vh;
+}
+
+.root {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+}
+
+.menu-link {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+}
+
+.gap-md {
+    gap: 20px;
+}
+
+.gap-lg {
+    gap: 50px;
+}
+
+.cover-size {
+    width: 100%;
+    height: 100%;
+}
+
+.justify-end {
+    justify-content: end;
+}
+
+.items-end {
+    align-items: end;
+}
+
+.left-padding {
+    padding-left: 20px;
+}
+
+.bottom-padding {
+    padding-bottom: 20px;
+}
+
+.px-md {
+    padding-left: 20px;
+    padding-right: 20px;
 }
