@@ -36,6 +36,11 @@ function initComponents(event) {
         if (event.key === "s")
             currentPageIndex--;
 
+        const keypadNum = parseInt(event.key);
+        if (!isNaN(keypadNum) && typeof keypadNum === "number") {
+            currentPageIndex = keypadNum - 1;
+        }
+
         currentPageIndex = Math.min(Math.max(currentPageIndex, 0), MAX_PAGE);
 
         if (currentPageIndex === 1) {
