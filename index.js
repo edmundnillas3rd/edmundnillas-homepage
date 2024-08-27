@@ -1,10 +1,51 @@
 import * as THREE from 'three';
-
 import { RoomEnvironment } from 'three/examples/jsm/Addons.js';
-
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+let currentPageIndex = 0;
+const MAX_PAGE = 3 - 1;
+
 function initComponents(event) {
+
+    const menuLinksRef = document.getElementsByClassName("menu-link");
+    const menuLinks = Array.from(menuLinksRef);
+    menuLinks.at(currentPageIndex).classList.toggle("selected");
+
+    const projectHudRef = document.getElementById("project-hud");
+
+    menuLinks.map((ml, index) => ml.addEventListener("click", (event) => {
+        menuLinks.at(currentPageIndex).classList.toggle("selected");
+
+        currentPageIndex = index;
+
+        if (currentPageIndex === 1) {
+            projectHudRef.classList.add("display-animation");
+        } else {
+            projectHudRef.classList.remove("display-animation");
+        }
+
+        menuLinks.at(currentPageIndex).classList.toggle("selected");
+    }));
+
+    window.addEventListener("keypress", (event) => {
+        menuLinks.at(currentPageIndex).classList.toggle("selected");
+        
+        if (event.key === "w")
+            currentPageIndex++;
+
+        if (event.key === "s")
+            currentPageIndex--;
+
+        currentPageIndex = Math.min(Math.max(currentPageIndex, 0), MAX_PAGE);
+
+        if (currentPageIndex === 1) {
+            projectHudRef.classList.add("display-animation");
+        } else {
+            projectHudRef.classList.remove("display-animation");
+        }
+
+        menuLinks.at(currentPageIndex).classList.toggle("selected");
+    });
 }
 
 function init(event) {
@@ -22,33 +63,61 @@ function init(event) {
 
     const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-    let model = null;
+    let landingPageModel = null;
+    let projectPageModel = null;
+    let contactPageModel = null;
 
     const loader = new GLTFLoader();
     loader.load("models/landing_page_scene/scene.gltf", function (gltf) {
-        model = gltf.scene;
-        model.position.set(0, 0, 498);
-        model.scale.setScalar(0);
+        landingPageModel = gltf.scene;
+        landingPageModel.position.set(0, 0, 48);
+        landingPageModel.scale.setScalar(0);
 
-        scene.add(model);
+        scene.add(landingPageModel);
 
     }, undefined, function (err) {
         console.error(err);
     });
 
-    scene.remove(model);
+    loader.load("models/project_page_scene/scene_2.gltf", function (gltf) {
+        projectPageModel = gltf.scene;
+        projectPageModel.position.set(70, 0, 0);
+        projectPageModel.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), THREE.MathUtils.degToRad(90));
+        projectPageModel.scale.setScalar(0);
+
+        scene.add(projectPageModel);
+
+    }, undefined, function (err) {
+        console.error(err);
+    });
+
+    scene.remove(landingPageModel);
+    scene.remove(projectPageModel);
 
     // Starting coordinates of the first scene (landing page) will be:
     // [X]: center of the screen
     // [Y]: center of the screen
     // [z]: 500px from the origin of the scene
 
-    camera.position.z = 500;
+    const cameraPoints = [
+        new THREE.Vector3(0, 0, 50),
+        new THREE.Vector3(75, 0, 0),
+        new THREE.Vector3(0, 0, -50)
+    ];
+
+    const cameraAngle = [
+        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), THREE.MathUtils.degToRad(0)),
+        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), THREE.MathUtils.degToRad(90)),
+        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), THREE.MathUtils.degToRad(180))
+    ];
 
     function animate() {
-        if (model) {
-            model.scale.lerp(new THREE.Vector3(1, 1, 1), 0.25);
-        }
+        landingPageModel?.scale.lerp(new THREE.Vector3(1, 1, 1), 0.25);
+        projectPageModel?.scale.lerp(new THREE.Vector3(1, 1, 1), 0.25);
+
+        camera.position.lerp(cameraPoints[currentPageIndex], 0.25);
+        camera.quaternion.slerp(cameraAngle[currentPageIndex], 0.25);
+
         renderer.render( scene, camera );
     }
 

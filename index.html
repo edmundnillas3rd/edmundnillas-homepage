@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>Edmund Nillas III | Homepage</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <script type="module" src="index.js" defer></script>
@@ -9,13 +10,18 @@
 <body>
     <canvas id="landpage-canvas">
     </canvas>
-    <section class="fira-mono root container white-text cover-size justify-end">
-        <section class="container items-end px-md bottom-padding">
-            <ul class="container gap-lg">
+    <section class="fira-mono root container white-text cover-full">
+        <section class="z10 container items-end px-md bottom-padding cover-full">
+            <ul class="fixed-pos container gap-lg justify-end width-full bg-black p-sm">
                 <li class="menu-link">[1] Home</li>
                 <li class="menu-link">[2] Projects</li>
                 <li class="menu-link">[3] Contacts</li>
             </ul>
+        </section>
+        <section class="abs-pos container justify-center items-center cover-full">
+            <section id="project-hud" class="container content-box bg-black-20 white-text cover-between display-hud p-md">
+                <h3>Projects</h3>
+            </section>
         </section>
     </section>
 </body>
