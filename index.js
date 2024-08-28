@@ -73,31 +73,6 @@ function init(event) {
     let contactPageModel = null;
 
     const loader = new GLTFLoader();
-    loader.load("models/landing_page_scene/scene.gltf", function (gltf) {
-        landingPageModel = gltf.scene;
-        landingPageModel.position.set(0, 0, 48);
-        landingPageModel.scale.setScalar(0);
-
-        scene.add(landingPageModel);
-
-    }, undefined, function (err) {
-        console.error(err);
-    });
-
-    loader.load("models/project_page_scene/scene_2.gltf", function (gltf) {
-        projectPageModel = gltf.scene;
-        projectPageModel.position.set(70, 0, 0);
-        projectPageModel.quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), THREE.MathUtils.degToRad(90));
-        projectPageModel.scale.setScalar(0);
-
-        scene.add(projectPageModel);
-
-    }, undefined, function (err) {
-        console.error(err);
-    });
-
-    scene.remove(landingPageModel);
-    scene.remove(projectPageModel);
 
     // Starting coordinates of the first scene (landing page) will be:
     // [X]: center of the screen
