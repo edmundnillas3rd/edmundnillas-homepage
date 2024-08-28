@@ -4,7 +4,6 @@
   "homepage": "https://edmundnillas3rd.github.io/edmundnillas-homepage/ ",
   "type": "module",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,7 +19,6 @@
     "three": "^0.167.1"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1",
     "vite": "^5.4.2"
   }
 }
