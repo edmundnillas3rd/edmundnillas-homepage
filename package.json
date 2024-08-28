@@ -15,9 +15,6 @@
   ],
   "author": "Edmund Nillas III",
   "license": "ISC",
-  "dependencies": {
-    "three": "^0.167.1"
-  },
   "devDependencies": {
     "vite": "^5.4.2"
   }
