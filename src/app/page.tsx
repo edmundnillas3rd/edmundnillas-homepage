@@ -24,11 +24,9 @@ import { SiExpress, SiFirebase } from "react-icons/si";
 import { useEffect, useState } from "react";
 import NextLink from "next/link";
 import { motion } from "framer-motion";
-import { type DocumentData } from "firebase/firestore";
 
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
-import { getPosts } from "../utils/database";
 
 const SkillItem = ({ icon, color, children }) => {
   const item = {
@@ -51,11 +49,7 @@ const SkillItem = ({ icon, color, children }) => {
 };
 
 export default function App() {
-  const [posts, setPosts] = useState<DocumentData>();
   useEffect(() => {
-    getPosts().then((data) => {
-      setPosts(data);
-    });
   }, []);
 
   const list = {
@@ -73,7 +67,7 @@ export default function App() {
             <Text as="span" color="brand.100">
               Edmund
             </Text>
-            {""}, a full stack web developer.
+            , a full stack web developer.
           </Text>
 
           <Box display="flex" p={10} gap={2}>
@@ -174,18 +168,6 @@ export default function App() {
             </Text>
           </ProjectCard>
         </Section>
-        {!!posts?.length && (
-          <Section title="Blogs" id="blogs">
-            <List spacing={3} display="flex" flexDir="column">
-              {posts &&
-                posts.map((post, index) => (
-                  <ListItem as={NextLink} key={index} href={`blogs/${post.id}`}>
-                    {post.data.title}
-                  </ListItem>
-                ))}
-            </List>
-          </Section>
-        )}
       </Flex>
     </>
   );
