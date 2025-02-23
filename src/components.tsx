@@ -1,6 +1,5 @@
 import { Image, Heading, Text, VStack } from "@chakra-ui/react";
 import { useState } from "react";
-import { getImage } from "./utils/storage";
 
 export const components = {
   h3({ children, ...props }) {
