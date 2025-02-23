@@ -13,18 +13,6 @@ export const components = {
   img({ ...props }) {
     const [src, setSrc] = useState("");
 
-    getImage(props.src)
-      .then((value) => {
-        setSrc(value);
-      })
-      .catch((error) => {
-        switch (error.code) {
-          case "storage/object-not-found":
-            setSrc(props.src);
-            break;
-        }
-      });
-
     return (
       <VStack as="div" justify="center" align="center" spacing={3} my={5}>
         <Image boxSize="lg" src={src} alt={props.alt} />
